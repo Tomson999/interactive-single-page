@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rick and Morty</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <script src="js/app.js"></script>
+</head>
+<body>
+    <div id="header">
+        <h1>Rick and Morty Characters</h1>
+        <button onclick="exportCSV()">Export</button>
+    </div>
+
+    <div id="search-area">
+        <input type="text" id="searchInput" onkeyup="search()" placeholder="Search...">
+        <select id="statusFilter" onchange="filterStatus()">
+            <option value="">All</option>
+            <option value="Alive">Alive</option>
+            <option value="Dead">Dead</option>
+        </select>
+    </div>
+
+    <div id="characters"></div>
+
+    <button onclick="loadMore()">Load more</button>
+</body>
+</html>
