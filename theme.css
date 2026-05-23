@@ -1,0 +1,83 @@
+body {
+    background-color: #333333;
+    color: white;
+    font-family: Arial;
+    margin: 0px;
+}
+
+#header {
+    background-color: #222222;
+    padding: 10px;
+    width: 800px;
+}
+
+h1 {
+    color: green;
+    font-size: 24px;
+}
+
+button {
+    background-color: green;
+    color: white;
+    border: 0px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+input {
+    width: 200px;
+    padding: 5px;
+    background: #444;
+    color: white;
+    border: 1px solid gray;
+}
+
+select {
+    padding: 5px;
+    background: #444;
+    color: white;
+}
+
+#characters {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    margin: 10px;
+}
+
+.card {
+    background: #444444;
+    width: 180px;
+    margin: 5px;
+    padding: 10px;
+}
+
+.card img {
+    width: 180px;
+    height: 180px;
+}
+
+.card h3 {
+    font-size: 14px;
+    color: white;
+    margin: 5px 0px;
+}
+
+.card p {
+    font-size: 12px;
+    color: #aaaaaa;
+    margin: 2px 0px;
+}
+
+.fav-btn {
+    background: none;
+    border: none;
+    color: gray;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#search-area {
+    padding: 10px;
+    width: 800px;
+}
