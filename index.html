@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rick &amp; Morty Character Explorer</title>
+  <link rel="stylesheet" href="./src/css/theme.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez" class="header-avatar" />
+        <h1 class="header-title">Rick &amp; Morty Explorer</h1>
+      </div>
+      <div class="header-actions">
+        <button id="btn-export" class="btn btn-secondary" disabled>⬇ Export CSV</button>
+        <button id="btn-theme" class="btn btn-icon" aria-label="Wissel thema">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <form id="form-search" role="search" novalidate>
+      <div class="search-wrapper">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="text" id="input-search" class="input-search" placeholder="Zoek een karakter..." minlength="1"
+          autocomplete="off" aria-label="Zoek op naam" />
+        <button type="button" id="btn-search-clear" class="btn-clear" hidden>✕</button>
+      </div>
+    </form>
+
+    <div class="filter-row">
+      <select id="filter-status" class="select-filter" aria-label="Filter op status">
+        <option value="All">Status: Alle</option>
+        <option value="Alive">Alive</option>
+        <option value="Dead">Dead</option>
+        <option value="unknown">Unknown</option>
+      </select>
+      <select id="filter-species" class="select-filter" aria-label="Filter op soort">
+        <option value="All">Soort: Alle</option>
+        <option value="Human">Human</option>
+        <option value="Alien">Alien</option>
+        <option value="Humanoid">Humanoid</option>
+        <option value="Robot">Robot</option>
+        <option value="Animal">Animal</option>
+      </select>
+      <select id="filter-gender" class="select-filter" aria-label="Filter op geslacht">
+        <option value="All">Geslacht: Alle</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Genderless">Genderless</option>
+        <option value="unknown">Unknown</option>
+      </select>
+      <button id="btn-fav-only" class="btn btn-secondary" aria-pressed="false">❤️ Favorieten</button>
+      <button id="btn-reset-filters" class="btn btn-ghost" hidden>✕ Wis filters</button>
+    </div>
+
+    <div class="sort-row">
+      <span class="sort-label">Sorteren:</span>
+      <button class="btn btn-sort active" data-field="name" aria-pressed="true">Naam ↑</button>
+      <button class="btn btn-sort" data-field="status" aria-pressed="false">Status</button>
+      <button class="btn btn-sort" data-field="species" aria-pressed="false">Soort</button>
+      <button class="btn btn-sort" data-field="gender" aria-pressed="false">Geslacht</button>
+      <button class="btn btn-sort" data-field="created" aria-pressed="false">Aangemaakt</button>
+    </div>
+
+    <div class="view-row">
+      <div class="view-toggle">
+        <button id="btn-view-grid" class="btn btn-view active" aria-pressed="true">⊞ Grid</button>
+        <button id="btn-view-table" class="btn btn-view" aria-pressed="false">☰ Tabel</button>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-icon">👥</span>
+        <span class="stat-value" id="stat-total">0</span>
+        <span class="stat-label">Totaal karakters</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">🔍</span>
+        <span class="stat-value" id="stat-filtered">0</span>
+        <span class="stat-label">Gefilterd</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">❤️</span>
+        <span class="stat-value" id="stat-favorites">0</span>
+        <span class="stat-label">Favorieten</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">⚙️</span>
+        <span class="stat-value" id="stat-active-filters">0</span>
+        <span class="stat-label">Actieve filters</span>
+      </div>
+    </div>
+
+    <div id="error-banner" class="error-banner" role="alert" hidden>
+      <span id="error-message"></span>
+      <button id="btn-retry" class="btn btn-danger">Opnieuw proberen</button>
+    </div>
+
+    <div id="grid-container" class="characters-grid" role="list"></div>
+
+    <div id="table-container" class="table-wrapper" hidden>
+      <table class="characters-table">
+        <thead>
+          <tr>
+            <th scope="col">Afbeelding</th>
+            <th scope="col">Naam</th>
+            <th scope="col">Status</th>
+            <th scope="col">Soort</th>
+            <th scope="col">Geslacht</th>
+            <th scope="col">Oorsprong</th>
+            <th scope="col">Locatie</th>
+            <th scope="col">Afleveringen</th>
+            <th scope="col">Fav.</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <div id="observer-target" aria-hidden="true"></div>
+    <p id="scroll-status" class="scroll-status" hidden></p>
+
+    <div id="empty-state" class="empty-state" hidden>
+      <p id="empty-message" class="empty-message"></p>
+      <button id="btn-reset-all" class="btn btn-primary">Reset alles</button>
+    </div>
+
+  </main>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="./src/js/helpers.js"></script>
+  <script src="./src/js/main.js"></script>
+</body>
+
+</html>
